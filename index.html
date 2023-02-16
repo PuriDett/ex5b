@@ -49,19 +49,9 @@
 			   }
 		}
 		//---------------------------
-	    $(document).ready(function(){
-			$("button").click(function(){
-			   var t = $('#temp').val();//celsius
-			   var u = $('#unit').val();
-			   var chk = validation(t) ;
-			   if (chk == null)return ;
-			   
-			   
-			   
-			   var t1;
-			   var u1;
-			   
-			   if(u == "F"){
+		function conversion(t,u){
+			var t1 = parseFloat(t) ;
+			if(u == "F"){
 					t1 = t * (9/5) + 32;
 					u1 = "Fahrenheit";
 			   }else if(u == "K"){
@@ -71,8 +61,23 @@
 					t1 = t * (4/5);
 					u1 = "Kelvin";
 			   }
-			   
-			   alert("Temperature is "+t1+" in "+u1);
+			   return t1 ;
+		}
+		//---------------------------
+	    $(document).ready(function(){
+			$("button").click(function(){
+			   var t = $('#temp').val();//celsius
+			   var u = $('#unit').val();
+			   var chk = validation(t) ;
+			   if (chk != null) return ;
+		//---------------------------	   
+
+			   var t1;
+			   var u1;
+			   var result = conversion(t,u) ;
+
+			   alert("Temperature is "+result+" in "+u);
+
 			});
 		});
 	</script>
